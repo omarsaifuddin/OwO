@@ -1,5 +1,5 @@
 # OwO-bot
-A simple Discord bot that takes text prompts and translates them to OwO text, supporting other silly dialects.
+A simple bot written with discord.py that takes text prompts and translates them to OwO text, supporting other silly dialects.
 
 ### Currently has dictionaries for the following, in no particular order:
 - OwO Speak (!owo)
