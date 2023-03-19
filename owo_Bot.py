@@ -2,7 +2,6 @@ import json
 import discord
 from discord.ext import commands
 import random
-#declaring current replacements/functions
 def owo_text(text: str) -> str:
     replacements = {
         "r": "w",
@@ -28,7 +27,6 @@ def leet_speak(text: str) -> str:
     for char in text:
         result += replacements.get(char.lower(), char)
     return result
-
 def homestuck_talk(text: str) -> str:
     replacement_chart = {
         'a': '4',
@@ -43,7 +41,7 @@ def homestuck_talk(text: str) -> str:
         'j': 'j',
         'k': '|<',
         'l': '1',
-        'm': '|\\|',
+        'm': '|\/|',
         'n': '/\\/',
         'o': '0',
         'p': 'p',
@@ -59,34 +57,7 @@ def homestuck_talk(text: str) -> str:
         'z': 'z',
         ' ': ' ',
     }
-    
-    glub_sounds = {
-        'b': 'bl',
-        'd': 'dl',
-        'f': 'fl',
-        'g': 'gl',
-        'k': 'kl',
-        'l': 'll',
-        'm': 'ml',
-        'n': 'nl',
-        'p': 'pl',
-        'r': 'rl',
-        's': 'sl',
-        't': 'tl',
-        'v': 'vl',
-    }
-    
-    glub_glub_sounds = {
-        'c': 'cc',
-        'j': 'jj',
-        'q': 'qq',
-        'x': 'xx',
-        'z': 'zz',
-    }
-    
-    replacement_chart.update(glub_sounds)
-    replacement_chart.update(glub_glub_sounds)
-    
+
     troll_text = []
     current_case = "upper"
     
@@ -97,10 +68,7 @@ def homestuck_talk(text: str) -> str:
             current_case = "lower"
         
         if char.lower() in replacement_chart:
-            if random.random() < 0.02:  # add glub glub sound with 2% chance
-                replacement_char = replacement_chart[char.lower()] + 'glub'
-            else:
-                replacement_char = replacement_chart[char.lower()]
+            replacement_char = replacement_chart[char.lower()]
             
             if replacement_char.isalpha():
                 if current_case == "upper":
@@ -123,7 +91,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f"{bot.user.name} has connected.")
+    print(f"{bot.user.name} has connected to Discord!")
 
 @bot.command(name="owo")
 async def owo(ctx, *, text: str):
@@ -138,6 +106,6 @@ async def leet(ctx, *, text: str):
 @bot.command(name="homestuck")
 async def homestuck(ctx, *, text: str):
     troll_text = homestuck_talk(text)
-    await ctx.send(troll_text)
+    await ctx.send(f'``{troll_text}``')
 
 bot.run(config["bot_token"])
