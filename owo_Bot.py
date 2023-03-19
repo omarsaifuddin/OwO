@@ -2,6 +2,7 @@ import json
 import discord
 from discord.ext import commands
 import random
+#declaring current replacements/functions
 def owo_text(text: str) -> str:
     replacements = {
         "r": "w",
@@ -96,7 +97,7 @@ def homestuck_talk(text: str) -> str:
             current_case = "lower"
         
         if char.lower() in replacement_chart:
-            if random.random() < 0.1:  # add glub glub sound with 10% chance
+            if random.random() < 0.02:  # add glub glub sound with 2% chance
                 replacement_char = replacement_chart[char.lower()] + 'glub'
             else:
                 replacement_char = replacement_chart[char.lower()]
@@ -122,7 +123,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f"{bot.user.name} has connected to Discord!")
+    print(f"{bot.user.name} has connected.")
 
 @bot.command(name="owo")
 async def owo(ctx, *, text: str):
